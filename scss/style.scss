@@ -9,10 +9,15 @@
         padding: 1em 2em;
         font-size: 1em;
         border-radius: 30px;
-        font-weight: bold;
+        font-weight: 200;
+        letter-spacing: .03rem;
         color: $white;
         text-decoration: none;
-        transition: 1s;
+        transition: .3s;
+        @include mQ(1200px){
+            padding: .9em 1.8em;
+            font-size: .9rem;
+        }
         &:hover{
             opacity: .7;
         }
@@ -28,44 +33,54 @@
         width: 100%;
         height: 50%;
         object-fit: cover;
+        @include mQ(1200px){
+            height: 35%;
+        }
     }
     div{
         padding: 1.5em 1em;
         p{
-            &::nth-child(1){
+            &:nth-child(1){
                 font-size: .7rem;
-                color: $lightGrayishBlue;
+                color: $greyishBlue;
+                @include mQ(1200px){
+                    font-size: .6rem;
+                }
             }
         }
         h5{
             font-size: 1.2rem;
             margin: .5em 0;
+            color: $darkBlue;
+            transition: all .4s;
+            width: 95%;
+            @include mQ(1200px){
+                width: 95%;
+                font-size: 1em;
+            }
+            &:hover{
+                color: $limeGreen;
+            }
         }
         p{
-            &::nth-child(3){
+            &:nth-child(3){
                 line-height: 1.4em;
-                color: $lightGrayishBlue;
+                color: $greyishBlue;
+                width: 98%;
+                @include mQ(1200px){
+                    width: 100%;
+                    font-size: .9rem;
+                }
             }
         }
     }
-    // p{
-    //     &:nth-child(2){
-    //         padding: .5em 1.5em;
-    //         font-size: .6em;
-    //     }
-    // }
-    // h5{
-    //     font-size: 1.3rem;
-    //     margin: .5em 0;
-    //     padding: 0 .5em;
-    // }
-    // p{
-    //     &:nth-child(4){
-    //         padding: 0 .5em;
-    //         margin: 1em 0;
-    //         line-height: 1.4em;
-    //     }
-    // }
+    
+}
+
+@mixin mQ($arg) {
+    @media screen and (max-width: $arg){
+        @content;
+    }
 }
 // end of mixinss
 
@@ -82,7 +97,8 @@ header{
 }
 
 body{
-    margin: 0;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
     // navigation and logo
@@ -94,6 +110,10 @@ body{
     display: flex;
     justify-content: space-between;
     background-color: $white;
+    position: sticky;
+    @include mQ(1200px){
+        padding: 1.7em 0;
+    }
 }
 
 .hamburger{
@@ -102,6 +122,9 @@ body{
 
 .logo{
     width: 15%;
+    @include mQ(1200px){
+        width: 14%;
+    }
     img{
         width: 100%;
     }
@@ -115,6 +138,9 @@ body > header > nav > div.nav_links > div > a:nth-child(1){
     width: 75%;
     display: flex;
     justify-content: space-around;
+    @include mQ(1200px){
+        width: 79%;
+    }
     ul{
         list-style-type: none;
         display: flex;
@@ -130,6 +156,9 @@ body > header > nav > div.nav_links > div > a:nth-child(1){
             padding: 2em 0;
             border-bottom: 3px solid transparent;
             transition: 1s;
+            @include mQ(1200px){
+                padding: 1em 0;
+            }
             &:hover{
                 color: $darkBlue;
                 border-bottom: 3px solid transparent;
@@ -152,8 +181,11 @@ div.hero{
     width: 100%;
     background: url("../images/bg-intro-desktop.svg") no-repeat;
     background-size: 80%;
-    background-position: 210% 3200%;
+    background-position: 210% 340%;
     overflow-x: hidden;
+    @include mQ(1200px){
+        background-position: 220% 670%;
+    }
 }
 
 div.hero > div{
@@ -165,8 +197,19 @@ div.hero > div{
 div.hero-content{
     width: 50%;
     padding: 7em 0;
+    @include mQ(1200px){
+        padding: 3em 0;
+    }
     h1{
-        font-size: 3rem;
+        font-size: 3.5rem;
+        color: #2d314d;
+        font-weight: 500;
+        width: 90%;
+        margin-top: 0;
+        @include mQ(1200px){
+            font-size: 2.5rem;
+            margin-top: 1em;
+        }
     }
     p{
         font-size: 1.3rem;
@@ -174,16 +217,34 @@ div.hero-content{
         color: $greyishBlue;
         line-height: 1.4em;
         margin: 0 0 3em;
+        width: 90%;
+        @include mQ(1200px){
+            font-size: 1em;
+            width: 100%;
+        }
     }
 }
 
 div.hero-img{
     right: -15%;
-    width: 70%;
+    width: 60%;
     top: -7rem;
     position: relative;
+    @include mQ(1200px){
+        top: -5rem;
+        width: 65%;
+    }
     img{
         width: 100%;
+    }
+}
+
+main{
+    margin-bottom: 1em;
+    @include mQ(1200px){
+        position: relative;
+        top: -10em;
+        z-index: -2;
     }
 }
 
@@ -191,12 +252,23 @@ div.easybank_choose{
     background-color: $lightGrayishBlue;
     padding: 4em;
     h2{
-        font-size: 2.3rem;
+        font-size: 2.5rem;
+        color: #2d314d;
+        font-weight: 500;
+        margin: .5em 0;
+        @include mQ(1200px){
+            font-size: 2rem;
+        }
     }
     p{
-        max-width: 60%;
+        max-width: 50%;
         line-height: 1.3em;
-        color: $greyishBlue;
+        color: #9698a6;
+        font-size: 1.1rem;
+        @include mQ(1200px){
+            font-size: .9rem;
+            max-width: 60%;
+        }
     }
 }
 
@@ -208,14 +280,28 @@ div.options{
 }
 
 div.options_content{
-    width: 24%;
+    width: 25%;
+    
+    img{
+        @include mQ(1200px){
+            width: 25%;
+        }
+    }
     h4{
         margin: 2em 0;
+        color: $darkBlue;
+        @include mQ(1200px){
+            margin: 1.5em 0;
+        }
     }
     p{
         line-height: 1.5em;
         color: $greyishBlue;
-        max-width: 95%;
+        max-width: 88%;
+        @include mQ(1200px){
+            max-width: 94%;
+            font-size: .8rem;
+        }
     }
 }
 
@@ -223,8 +309,13 @@ div.articles{
     padding: 4em;
     background-color: $veryLightGray;
     h2{
-        font-size: 2.3rem;
-        margin: 2em 0;
+        font-size: 2.4rem;
+        margin: 1em 0;
+        color: #2d314d;
+        font-weight: 500;
+        @include mQ(1200px){
+            font-size: 2.1rem;
+        }
     }
 }
 
@@ -240,6 +331,83 @@ div.articles-component{
 footer{
     background: $darkBlue;
 }
+
+div.footer-content{
+    display: flex;
+    justify-content: space-between;
+    padding: 2em 4em;
+}
+
+div.first-footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 55%;
+}
+
+div.footer-logo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column; 
+}
+
+div.socials{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3em;
+    .icon{
+        cursor: pointer;
+        path{
+            fill: #fff;
+            transition: all .5s;
+            &:hover{
+                fill: $limeGreen;
+            }
+        }
+    }
+}
+
+div.footer-links-content{
+    a{
+        color: #fff;
+        text-decoration: none;
+        transition: all .4s;
+        &:hover{
+            color: $limeGreen;
+        }
+    }
+}
+
+div.footer-links{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+div.footer-links-content{
+    display: flex;
+    flex-direction: column;
+    a{
+        margin: .5em 0;
+    }
+}
+
+div.second-footer-content{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    div{
+        margin: 1em 0 1.3em 8em;
+    }
+    p{
+        color: $greyishBlue;
+        margin-left: 4em;
+    }
+}
+
+
+
+
 
 
 
