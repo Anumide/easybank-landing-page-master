@@ -16,7 +16,11 @@
         transition: .3s;
         @include mQ(1200px){
             padding: .9em 1.8em;
-            font-size: .9rem;
+            font-size: .8rem;
+        }
+        @include mQ(800px){
+            padding: .8em 1.4em;
+            font-size: .7rem;
         }
         &:hover{
             opacity: .7;
@@ -54,9 +58,10 @@
             color: $darkBlue;
             transition: all .4s;
             width: 95%;
+            cursor: pointer;
             @include mQ(1200px){
-                width: 95%;
-                font-size: 1em;
+                width: 100%;
+                font-size: .9rem;
             }
             &:hover{
                 color: $limeGreen;
@@ -69,7 +74,7 @@
                 width: 98%;
                 @include mQ(1200px){
                     width: 100%;
-                    font-size: .9rem;
+                    font-size: .7rem;
                 }
             }
         }
@@ -125,6 +130,9 @@ body{
     @include mQ(1200px){
         width: 14%;
     }
+    @include mQ(800px){
+        width: 13%;
+    }
     img{
         width: 100%;
     }
@@ -141,13 +149,25 @@ body > header > nav > div.nav_links > div > a:nth-child(1){
     @include mQ(1200px){
         width: 79%;
     }
+    @include mQ(800px){
+        width: 81%;
+    }
     ul{
         list-style-type: none;
         display: flex;
         margin: 0;
         padding: 0;
+        @include mQ(1200px){
+            width: 30%;
+        }
+        @include mQ(800px){
+            width: 25%;
+        }
         li{
             padding: 0 1em;
+            @include mQ(800px){
+                padding: 0 .6em;
+            }
         }
         a{
             color: $greyishBlue;
@@ -158,6 +178,7 @@ body > header > nav > div.nav_links > div > a:nth-child(1){
             transition: 1s;
             @include mQ(1200px){
                 padding: 1em 0;
+                font-size: .8rem;
             }
             &:hover{
                 color: $darkBlue;
@@ -186,6 +207,9 @@ div.hero{
     @include mQ(1200px){
         background-position: 220% 670%;
     }
+    @include mQ(800px){
+        background-position: 230% 6800%;
+    }
 }
 
 div.hero > div{
@@ -210,6 +234,10 @@ div.hero-content{
             font-size: 2.5rem;
             margin-top: 1em;
         }
+        @include mQ(800px){
+            font-size: 2.1rem;
+            margin-top: 1em;
+        }
     }
     p{
         font-size: 1.3rem;
@@ -221,6 +249,9 @@ div.hero-content{
         @include mQ(1200px){
             font-size: 1em;
             width: 100%;
+        }
+        @include mQ(800px){
+            font-size: .75rem;
         }
     }
 }
@@ -234,6 +265,11 @@ div.hero-img{
         top: -5rem;
         width: 65%;
     }
+    @include mQ(800px){
+        top: -4rem;
+        width: 70%;
+        right: -15%;
+    }
     img{
         width: 100%;
     }
@@ -246,11 +282,17 @@ main{
         top: -10em;
         z-index: -2;
     }
+    @include mQ(800px){
+        top: -18em;
+    }
 }
 
 div.easybank_choose{
     background-color: $lightGrayishBlue;
-    padding: 4em;
+    padding: 3em 4em;
+    @include mQ(800px){
+        padding: 3em 2em;
+    }
     h2{
         font-size: 2.5rem;
         color: #2d314d;
@@ -258,6 +300,10 @@ div.easybank_choose{
         margin: .5em 0;
         @include mQ(1200px){
             font-size: 2rem;
+        }
+        @include mQ(800px){
+            font-size: 1.5rem;
+            margin-top: 0;
         }
     }
     p{
@@ -268,6 +314,9 @@ div.easybank_choose{
         @include mQ(1200px){
             font-size: .9rem;
             max-width: 60%;
+        }
+        @include mQ(800px){
+            font-size: 0.7rem;
         }
     }
 }
@@ -327,6 +376,8 @@ div.articles-details{
 div.articles-component{
     @include articles-component
 }
+
+        // footer designs
 
 footer{
     background: $darkBlue;
@@ -398,6 +449,9 @@ div.second-footer-content{
     flex-direction: column;
     div{
         margin: 1em 0 1.3em 8em;
+        @include mQ(1200px){
+            margin: 1em 0 1.3em 10em;
+        }
     }
     p{
         color: $greyishBlue;
