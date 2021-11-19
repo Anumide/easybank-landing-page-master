@@ -30,9 +30,12 @@
 
 @mixin articles-component{
     width: 23%;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
     background-color: $white;
+    @include mQ(475px){
+        width: 100%;
+    }
     img{
         width: 100%;
         height: 50%;
@@ -40,14 +43,34 @@
         @include mQ(1200px){
             height: 35%;
         }
+        @include mQ(475px){
+            height: 12em;
+        }
+        @include mQ(375px){
+            height: 11em;
+        }
+        @include mQ(320px){
+            height: 9em;
+        }
     }
     div{
         padding: 1.5em 1em;
+        @include mQ(475px){
+            text-align: left;
+            padding: 1em;
+        }
         p{
             &:nth-child(1){
                 font-size: .7rem;
                 color: $greyishBlue;
                 @include mQ(1200px){
+                    font-size: .6rem;
+                }
+                @include mQ(800px){
+                    font-size: .5rem;
+                }
+                @include mQ(475px){
+                    margin-top: 0;
                     font-size: .6rem;
                 }
             }
@@ -63,6 +86,22 @@
                 width: 100%;
                 font-size: .9rem;
             }
+            @include mQ(800px){
+                width: 100%;
+                font-size: .7rem;
+            }
+            @include mQ(475px){
+              width: 85%;
+              font-size: 1rem;
+            }
+            @include mQ(375px){
+              width: 90%;
+              font-size: .9rem;
+            }
+            @include mQ(320px){
+              width: 96%;
+              font-size: .8rem;
+            }
             &:hover{
                 color: $limeGreen;
             }
@@ -73,13 +112,27 @@
                 color: $greyishBlue;
                 width: 98%;
                 @include mQ(1200px){
-                    width: 100%;
                     font-size: .7rem;
+                }
+                @include mQ(800px){
+                    font-size: .5rem;
+                }
+                @include mQ(475px){
+                  font-size: .9rem;
+                  width: 95%;
+                }
+                @include mQ(375px){
+                  font-size: .8rem;
+                  width: 100%;
+                }
+                @include mQ(320px){
+                  font-size: .65rem;
+                  width: 100%;
                 }
             }
         }
     }
-    
+
 }
 
 @mixin mQ($arg) {
@@ -87,7 +140,18 @@
         @content;
     }
 }
-// end of mixinss
+
+@mixin keyframes($name) {
+    @keyframes #{$name}{
+        @content;
+    }
+}
+
+@mixin animate($animation, $duration, $method) {
+    animation: $animation, $duration, $method;
+}
+
+// end of mixin
 
 *{
     box-sizing: border-box;
@@ -99,6 +163,21 @@
 header{
     width: 100%;
     height: 43em;
+    @include mQ(1200px){
+        height: 33em;
+    }
+    @include mQ(800px){
+        height: 25.5em;
+    }
+    @include mQ(475px){
+        height: 43em;
+    }
+    @include mQ(375px){
+        height: 40em;
+    }
+    @include mQ(320px){
+        height: 37em;
+    }
 }
 
 body{
@@ -109,21 +188,69 @@ body{
     // navigation and logo
 
 .navigation{
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-    padding: 2em 0;
+    padding: 2em 4em;
     display: flex;
     justify-content: space-between;
-    background-color: $white;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px 1px rgba(00, 00, 00, .1);
     position: sticky;
+    top: 0px;
+    z-index: 1;
+    transition: all .5s;
     @include mQ(1200px){
-        padding: 1.7em 0;
+        padding: 2em 3em;
+    }
+    @include mQ(800px){
+        padding: 2em 2em;
+    }
+    @include mQ(475px){
+        padding: 1em 1.5em;
     }
 }
 
 .hamburger{
     display: none;
+    width: 7%;
+    @include mQ(475px){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
+
+div.line-weight{
+    background-color: $darkBlue;
+    width: 100%;
+    height: .4px;
+    margin-bottom: 4.5px;
+    position: relative;
+    top: 0;
+    transition: all .4s ease-in-out;
+    @include mQ(375px){
+        margin-bottom: 4px;
+    }
+    @include mQ(320px){
+        margin-bottom: 3.5px;
+    }
+}
+
+div.line-weight-2.open{
+    width: 0;
+    opacity: 0
+}
+
+div.line-weight-1.open{
+    transform: rotate(-45deg);
+    top: 9.5px;
+}
+
+div.line-weight-3.open{
+    transform: rotate(45deg);
+}
+
 
 .logo{
     width: 15%;
@@ -132,6 +259,9 @@ body{
     }
     @include mQ(800px){
         width: 13%;
+    }
+    @include mQ(475px){
+        width: 35%;
     }
     img{
         width: 100%;
@@ -151,6 +281,9 @@ body > header > nav > div.nav_links > div > a:nth-child(1){
     }
     @include mQ(800px){
         width: 81%;
+    }
+    @include mQ(475px){
+        display: none;
     }
     ul{
         list-style-type: none;
@@ -173,7 +306,7 @@ body > header > nav > div.nav_links > div > a:nth-child(1){
             color: $greyishBlue;
             text-decoration: none;
             font-weight: 500;
-            padding: 2em 0;
+            padding: 2.7em 0;
             border-bottom: 3px solid transparent;
             transition: 1s;
             @include mQ(1200px){
@@ -190,14 +323,63 @@ body > header > nav > div.nav_links > div > a:nth-child(1){
     }
 }   // end of navigation
 
+    // menu for mobile
+div.nav_mobile{
+  display: none;
+  
+  @include mQ(475px){
+    display: block;
+    position: absolute;
+    width: 90%;
+    background: #fff;
+    top: 15%;
+    left: 5%;
+    z-index: 1;
+    height: 50%;
+  @include keyframes(dropdown){
+      0%{
+        height: 5%;
+        opacity: 0.3;
+      }
+      100%{
+          height: 50%;
+          opacity: 1;
+      }
+  };
+  @include animate(dropdown, .5s, ease-in-out);
+  }
+  ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 1.5em;
+  }
+  li{
+    margin: 1em auto;
+    width: 50%;
+    text-align: center;
+    a{
+      color: $darkBlue;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color .3s;
+      &:hover{
+        color: $limeGreen;
+      }
+    }
+  }
+} 
 
-    // request invite 
+
+
+//end of menu design
+
+    // request invite
 .request_invite_link{
     @include requestLink;
 } // end of request invite
 
         // hero section
-        
+
 div.hero{
     width: 100%;
     background: url("../images/bg-intro-desktop.svg") no-repeat;
@@ -210,12 +392,28 @@ div.hero{
     @include mQ(800px){
         background-position: 230% 6800%;
     }
+    @include mQ(475px){
+        background: url("../images/bg-intro-mobile.svg") no-repeat;
+        background-position: 100% -40%;
+        background-size: 100%;
+    }
+    @include mQ(375px){
+        background-position: 100% -37%;
+    }
+    @include mQ(320px){
+        background-position: 100% -26%;
+    }
 }
 
 div.hero > div{
     width: 90%;
     margin: 0 auto;
     display: flex;
+    @include mQ(475px){
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 div.hero-content{
@@ -223,6 +421,16 @@ div.hero-content{
     padding: 7em 0;
     @include mQ(1200px){
         padding: 3em 0;
+    }
+    @include mQ(475px){
+        width: 100%;
+        padding: 0;
+        text-align: center;
+        position: relative;
+        top: -8em;
+    }
+    @include mQ(320px){
+        top: -6em;
     }
     h1{
         font-size: 3.5rem;
@@ -236,7 +444,15 @@ div.hero-content{
         }
         @include mQ(800px){
             font-size: 2.1rem;
-            margin-top: 1em;
+            margin-top: 0;
+        }
+        @include mQ(475px){
+            width: 100%;
+            font-size: 2.5rem;
+        }
+        @include mQ(375px){
+            width: 100%;
+            font-size: 2.3rem;
         }
     }
     p{
@@ -251,7 +467,17 @@ div.hero-content{
             width: 100%;
         }
         @include mQ(800px){
-            font-size: .75rem;
+            font-size: .7rem;
+        }
+        @include mQ(475px){
+            font-size: 1rem;
+            margin-bottom: 2em;
+        }
+        @include mQ(375px){
+            font-size: .9rem;
+        }
+        @include mQ(320px){
+            font-size: .8rem;
         }
     }
 }
@@ -270,28 +496,42 @@ div.hero-img{
         width: 70%;
         right: -15%;
     }
+    @include mQ(475px){
+        right: 0;
+        width: 100%;
+        top: -8.5em;
+    }
+    @include mQ(375px){
+        top: -7.5em;
+    }
+    @include mQ(320px){
+        top: -6.5em;
+    }
     img{
         width: 100%;
     }
 }
 
-main{
-    margin-bottom: 1em;
-    @include mQ(1200px){
-        position: relative;
-        top: -10em;
-        z-index: -2;
-    }
-    @include mQ(800px){
-        top: -18em;
-    }
-}
+// main{
+//     margin-bottom: 1em;
+//     @include mQ(1200px){
+//         position: relative;
+//         top: -10em;
+//         z-index: -2;
+//     }
+//     @include mQ(800px){
+//         top: -18em;
+//     }
+// }
 
 div.easybank_choose{
     background-color: $lightGrayishBlue;
     padding: 3em 4em;
     @include mQ(800px){
         padding: 3em 2em;
+    }
+    @include mQ(475px){
+        text-align: center;
     }
     h2{
         font-size: 2.5rem;
@@ -304,6 +544,14 @@ div.easybank_choose{
         @include mQ(800px){
             font-size: 1.5rem;
             margin-top: 0;
+        }
+        @include mQ(475px){
+            font-size: 2rem;
+            max-width: 80%;
+            margin: 0em auto;
+        }
+        @include mQ(375px){
+            font-size: 1.9rem;
         }
     }
     p{
@@ -318,6 +566,18 @@ div.easybank_choose{
         @include mQ(800px){
             font-size: 0.7rem;
         }
+        @include mQ(475px){
+            max-width: 100%;
+            margin: 1.5em auto;
+            font-size: 1rem;
+        }
+        @include mQ(375px){
+            font-size: .9rem;
+            margin: 1em auto;
+        }
+        @include mQ(320px){
+            font-size: .7rem;
+        }
     }
 }
 
@@ -326,14 +586,25 @@ div.options{
     justify-content: space-between;
     padding: 3em 0 0;
     width: 100%;
+    @include mQ(800px){
+        padding: 2em 0 0;
+    }
+    @include mQ(475px){
+        flex-direction: column;
+    }
 }
 
 div.options_content{
     width: 25%;
-    
+    @include mQ(475px){
+        width: 100%;
+    }
     img{
         @include mQ(1200px){
             width: 25%;
+        }
+        @include mQ(475px){
+            width: 18%;
         }
     }
     h4{
@@ -341,6 +612,14 @@ div.options_content{
         color: $darkBlue;
         @include mQ(1200px){
             margin: 1.5em 0;
+        }
+        @include mQ(800px){
+            font-size: .9rem
+        }
+        @include mQ(475px){
+            margin: 1em auto;
+            font-size: 1.2rem;
+            font-weight: 500;
         }
     }
     p{
@@ -351,12 +630,34 @@ div.options_content{
             max-width: 94%;
             font-size: .8rem;
         }
+        @include mQ(800px){
+            max-width: 82.5%;
+            font-size: .55rem;
+        }
+        @include mQ(475px){
+            max-width: 100%;
+            font-size: 1rem;
+            margin-top: 0;
+            margin-bottom: 2em;
+        }
+        @include mQ(375px){
+            font-size: .9rem;
+        }
+        @include mQ(320px){
+            font-size: .7rem;
+        }
     }
 }
 
 div.articles{
     padding: 4em;
     background-color: $veryLightGray;
+    @include mQ(800px){
+        padding: 1em 2em;
+    }
+    @include mQ(475px){
+        text-align: center;
+    }
     h2{
         font-size: 2.4rem;
         margin: 1em 0;
@@ -365,12 +666,18 @@ div.articles{
         @include mQ(1200px){
             font-size: 2.1rem;
         }
+        @include mQ(800px){
+            font-size: 1.7rem;
+        }
     }
 }
 
 div.articles-details{
     display: flex;
     justify-content: space-between;
+    @include mQ(475px){
+        flex-direction: column;
+    }
 }
 
 div.articles-component{
@@ -387,34 +694,71 @@ div.footer-content{
     display: flex;
     justify-content: space-between;
     padding: 2em 4em;
+    @include mQ(800px){
+        padding : 2em;
+    }
+    @include mQ(475px){
+      flex-direction: column;
+      text-align: center;
+    }
 }
 
 div.first-footer-content {
     display: flex;
     justify-content: space-between;
     width: 55%;
+    @include mQ(475px){
+      flex-direction: column;
+      width: 100%;
+    }
 }
 
 div.footer-logo{
     display: flex;
     justify-content: space-between;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
-div.socials{
+div.footer-easybank-logo{
+    @include mQ(800px){
+        width: 95%;
+    }
+    @include mQ(475px){
+      width: 35%;
+      margin: 0 auto;
+    }
+    img{
+        width: 100%;
+    }
+}
+
+div.socials {
     display: flex;
     justify-content: space-between;
     margin-top: 3em;
-    .icon{
-        cursor: pointer;
-        path{
-            fill: #fff;
-            transition: all .5s;
-            &:hover{
-                fill: $limeGreen;
+    @include mQ(475px){
+      margin: 1.5em auto;
+      width: 50%;
+    }
+    @include mQ(320px){
+      width: 55%
+    }
+    span{
+        @include mQ(800px){
+            width: 20%;
+        }
+        .icon{
+            cursor: pointer;
+            path{
+                fill: #fff;
+                transition: all .5s;
+                &:hover{
+                    fill: $limeGreen;
+                }
             }
         }
     }
+
 }
 
 div.footer-links-content{
@@ -422,6 +766,9 @@ div.footer-links-content{
         color: #fff;
         text-decoration: none;
         transition: all .4s;
+        @include mQ(800px){
+            font-size: .9rem;
+        }
         &:hover{
             color: $limeGreen;
         }
@@ -432,6 +779,10 @@ div.footer-links{
     display: flex;
     justify-content: space-between;
     width: 50%;
+    @include mQ(475px){
+      margin: 0 auto;
+      flex-direction: column;
+    }
 }
 
 div.footer-links-content{
@@ -452,30 +803,18 @@ div.second-footer-content{
         @include mQ(1200px){
             margin: 1em 0 1.3em 10em;
         }
+        @include mQ(475px){
+            margin: 1.5em auto;
+        }
     }
     p{
         color: $greyishBlue;
         margin-left: 4em;
+        @include mQ(800px){
+            font-size: .9rem;
+        }
+        @include mQ(475px){
+            margin: 1.5em auto;
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
