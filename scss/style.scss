@@ -193,6 +193,7 @@ body{
     padding: 2em 4em;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #fff;
     box-shadow: 2px 2px 2px 1px rgba(00, 00, 00, .1);
     position: sticky;
@@ -200,10 +201,10 @@ body{
     z-index: 1;
     transition: all .5s;
     @include mQ(1200px){
-        padding: 2em 3em;
+        padding: 1.5em 3em;
     }
     @include mQ(800px){
-        padding: 2em 2em;
+        padding: 1.2em 2em;
     }
     @include mQ(475px){
         padding: 1em 1.5em;
@@ -293,10 +294,10 @@ div.line-weight-3.open{
         margin: 0;
         padding: 0;
         @include mQ(1200px){
-            width: 30%;
+            width: 50%;
         }
         @include mQ(800px){
-            width: 25%;
+            width: 45%;
         }
         li{
             padding: 0 1em;
@@ -308,27 +309,41 @@ div.line-weight-3.open{
             color: $greyishBlue;
             text-decoration: none;
             font-weight: 500;
-            padding: 2.7em 0;
             border-bottom: 3px solid transparent;
-            transition: 1s;
+            transition: .5s;
+            position: relative;
             @include mQ(1200px){
-                padding: 1em 0;
                 font-size: .8rem;
             }
             &:hover{
+                width: 100%;
                 color: $darkBlue;
-                border-bottom: 3px solid transparent;
-                border-image: linear-gradient(90deg, $limeGreen, $brightCyan);
-                border-image-slice: 1;
             }
-        }
+            &::before{
+                content: "";
+                background: linear-gradient(90deg, #31d35c, #2bb7da);
+                height: 4px;
+                width: 0;
+                position: absolute;
+                top: 3.4em;
+                transition: width .1s ease-in-out;
+                @include mQ(1200px){
+                    top: 3em;
+                    height: 3px;
+                }
+                @include mQ(800px){
+                    top: 2.6em;
+                    height: 2px;
+                }
+            }
+            &:hover::before{
+                width: 100%;
+            }
+         }
     }
 }   // end of navigation
 
     // menu for mobile
-// div.mobile-design{
-   
-// }
 
 div.closeNav{
    display: none;
@@ -393,6 +408,7 @@ div.hero{
     width: 100%;
     background: url("../images/bg-intro-desktop.svg") no-repeat;
     background-size: 80%;
+    background-color: $veryLightGray;
     background-position: 210% 340%;
     overflow-x: hidden;
     @include mQ(1200px){
