@@ -228,7 +228,7 @@ div.line-weight{
     margin-bottom: 4.5px;
     position: relative;
     top: 0;
-    transition: all .4s ease-in-out;
+    transition: all .2s ease-in-out;
     @include mQ(375px){
         margin-bottom: 4px;
     }
@@ -245,6 +245,12 @@ div.line-weight-2.open{
 div.line-weight-1.open{
     transform: rotate(-45deg);
     top: 9.5px;
+    @include mQ(375px){
+        top: 8.5px;
+    }
+    @include mQ(320px){
+        top: 7.5px;
+    }
 }
 
 div.line-weight-3.open{
@@ -266,10 +272,6 @@ div.line-weight-3.open{
     img{
         width: 100%;
     }
-}
-
-body > header > nav > div.nav_links > div > a:nth-child(1){
-    display: none;
 }
 
 .nav_links{
@@ -324,50 +326,57 @@ body > header > nav > div.nav_links > div > a:nth-child(1){
 }   // end of navigation
 
     // menu for mobile
-div.nav_mobile{
-  display: none;
-  
-  @include mQ(475px){
-    display: block;
-    position: absolute;
-    width: 90%;
-    background: #fff;
-    top: 15%;
-    left: 5%;
-    z-index: 1;
-    height: 50%;
-  @include keyframes(dropdown){
-      0%{
-        height: 5%;
-        opacity: 0.3;
-      }
-      100%{
-          height: 50%;
-          opacity: 1;
-      }
-  };
-  @include animate(dropdown, .5s, ease-in-out);
-  }
-  ul{
-    list-style-type: none;
-    padding: 0;
-    margin: 1.5em;
-  }
-  li{
-    margin: 1em auto;
-    width: 50%;
-    text-align: center;
-    a{
-      color: $darkBlue;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color .3s;
-      &:hover{
-        color: $limeGreen;
-      }
-    }
-  }
+// div.mobile-design{
+   
+// }
+
+div.closeNav{
+   display: none;
 } 
+
+div.openNav{
+    display: block;
+    @include mQ(475px){
+        position: absolute;
+        width: 90%;
+        background: #fff;
+        top: 4em;
+        left: 5%;
+        z-index: 1;
+      @include keyframes(dropdown){
+          0%{
+            // height: 5%;
+            opacity: 0.3;
+          }
+          100%{
+            //   height: 50%;
+              opacity: 1;
+          }
+      };
+      @include animate(dropdown, .5s, ease-in-out);
+      ul{
+        list-style-type: none;
+        padding: 0;
+        margin: 1.5em;
+      }
+      li{
+        margin: 1em auto;
+        width: 50%;
+        text-align: center;
+        a{
+          color: $darkBlue;
+          text-decoration: none;
+          font-weight: 600;
+          transition: color .3s;
+          &:hover{
+            color: $limeGreen;
+          }
+        }
+      } 
+      }
+    
+      
+}
 
 
 
