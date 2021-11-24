@@ -190,7 +190,7 @@ body{
 .navigation{
     width: 100%;
     margin: 0 auto;
-    padding: 2em 4em;
+    padding: 1.5em 4em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -201,7 +201,7 @@ body{
     z-index: 1;
     transition: all .5s;
     @include mQ(1200px){
-        padding: 1.5em 3em;
+        padding: 1.3em 3em;
     }
     @include mQ(800px){
         padding: 1.2em 2em;
@@ -325,10 +325,10 @@ div.line-weight-3.open{
                 height: 4px;
                 width: 0;
                 position: absolute;
-                top: 3.4em;
-                transition: width .1s ease-in-out;
+                top: 3em;
+                transition: width .2s ease-in-out;
                 @include mQ(1200px){
-                    top: 3em;
+                    top: 2.9em;
                     height: 3px;
                 }
                 @include mQ(800px){
