@@ -141,6 +141,12 @@
     }
 }
 
+@mixin minQ($arg) {
+    @media screen and (min-width: $arg){
+        @content;
+    }
+}
+
 @mixin keyframes($name) {
     @keyframes #{$name}{
         @content;
@@ -156,6 +162,10 @@
 *{
     box-sizing: border-box;
     font-family: $publicSansFont;
+}
+
+html{
+  scroll-behavior: smooth;
 }
 
         // header
@@ -322,17 +332,17 @@ div.line-weight-3.open{
             &::before{
                 content: "";
                 background: linear-gradient(90deg, #31d35c, #2bb7da);
-                height: 4px;
+                height: 3px;
                 width: 0;
                 position: absolute;
-                top: 3em;
+                top: 2.8em;
                 transition: width .2s ease-in-out;
                 @include mQ(1200px){
-                    top: 2.9em;
-                    height: 3px;
+                    top: 2.8em;
+                    height: 2px;
                 }
                 @include mQ(800px){
-                    top: 2.6em;
+                    top: 2.5em;
                     height: 2px;
                 }
             }
@@ -347,10 +357,13 @@ div.line-weight-3.open{
 
 div.closeNav{
    display: none;
-} 
+}
 
 div.openNav{
     display: block;
+    @include minQ(475px){
+        display: none;
+    }
     @include mQ(475px){
         position: absolute;
         width: 90%;
@@ -359,11 +372,11 @@ div.openNav{
         left: 5%;
         z-index: 1;
       @include keyframes(dropdown){
-          0%{
+          from{
             // height: 5%;
             opacity: 0.3;
           }
-          100%{
+          to{
             //   height: 50%;
               opacity: 1;
           }
@@ -387,12 +400,11 @@ div.openNav{
             color: $limeGreen;
           }
         }
-      } 
       }
-    
-      
-}
+    }
 
+
+}
 
 
 //end of menu design
@@ -430,15 +442,24 @@ div.hero{
     }
 }
 
-div.hero > div{
+div.sub-hero{
     width: 90%;
-    margin: 0 auto;
     display: flex;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateX(-20%);
+    transition: opacity 200ms ease-in-out, transform 300ms ease-in-out;
+
     @include mQ(475px){
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
     }
+}
+
+div.sub-hero-scrolled{
+    transform: translateX(0);
+    opacity: 1;
 }
 
 div.hero-content{

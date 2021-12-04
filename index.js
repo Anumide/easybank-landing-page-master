@@ -1,6 +1,9 @@
+// Hamburger effect
+
 let mobileControl = document.querySelector('.closeNav'), 
     hamburger = document.querySelector('.hamburger'),
-    hamburgerLine = document.querySelectorAll('.line-weight')
+    hamburgerLine = document.querySelectorAll('.line-weight'),
+    cancelNav = document.querySelector('.closeNav')
 
 hamburger.addEventListener('click', () =>{
     hamburgerLine.forEach(element => {
@@ -15,3 +18,47 @@ hamburger.addEventListener('click', () =>{
         mobileControl.classList.remove('openNav')
     }
 })
+
+// Intersection observer for site content
+
+//  Initiating site contents
+const heroScrolled = document.querySelector('.sub-hero');
+// Intersection options
+const appearOnLoadOptions = {
+    threshold: [0.4, 1]
+};
+
+const dissapearOnScrollOptions = {
+    threshold: 0.3
+}
+
+// Initiating Intersection Observer for sliding in
+const appearOnLoad = new IntersectionObserver(function(entries, appearOnLoad) {
+    entries.forEach(entry => {  
+        if (!entry.isIntersecting) {
+            return;
+        } else{
+            console.log(entry);
+            entry.target.classList.add('sub-hero-scrolled')
+        }
+        
+    });
+}, appearOnLoadOptions); 
+
+// Initiating Intersection Observer for sliding out
+const dissappearOnLoad = new IntersectionObserver(function(entries, appearOnLoad) {
+    entries.forEach(entry => {  
+        if (entry.isIntersecting) {
+            return;
+        } else{
+            console.log(entry);
+            entry.target.classList.remove('sub-hero-scrolled')
+        }
+        
+    });
+}, dissapearOnScrollOptions); 
+
+appearOnLoad.observe(heroScrolled)
+dissappearOnLoad.observe(heroScrolled)
+
+
