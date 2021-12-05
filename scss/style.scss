@@ -446,20 +446,11 @@ div.sub-hero{
     width: 90%;
     display: flex;
     margin: 0 auto;
-    opacity: 0;
-    transform: translateX(-20%);
-    transition: opacity 200ms ease-in-out, transform 300ms ease-in-out;
-
     @include mQ(475px){
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
     }
-}
-
-div.sub-hero-scrolled{
-    transform: translateX(0);
-    opacity: 1;
 }
 
 div.hero-content{
@@ -558,18 +549,6 @@ div.hero-img{
     }
 }
 
-// main{
-//     margin-bottom: 1em;
-//     @include mQ(1200px){
-//         position: relative;
-//         top: -10em;
-//         z-index: -2;
-//     }
-//     @include mQ(800px){
-//         top: -18em;
-//     }
-// }
-
 div.easybank_choose{
     background-color: $lightGrayishBlue;
     padding: 3em 4em;
@@ -579,6 +558,9 @@ div.easybank_choose{
     @include mQ(475px){
         text-align: center;
     }
+}
+
+div.easybank_choose_text{
     h2{
         font-size: 2.5rem;
         color: #2d314d;
@@ -863,4 +845,27 @@ div.second-footer-content{
             margin: 1.5em auto;
         }
     }
+}
+
+
+// design for intersection observer
+
+.scroll-in{
+    opacity: 0;
+    transform: translateX(-20%);
+    transition: opacity 300ms .2s ease-in-out, transform 400ms .2s ease-in-out;
+}
+
+.scroll-out{
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.disappear{
+    opacity: 0;
+    transition: opacity 300ms .2s linear;
+}
+
+.appear{
+    opacity: 1;
 }

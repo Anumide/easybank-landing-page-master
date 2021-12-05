@@ -22,43 +22,84 @@ hamburger.addEventListener('click', () =>{
 // Intersection observer for site content
 
 //  Initiating site contents
-const heroScrolled = document.querySelector('.sub-hero');
+const ScrollInOut = document.querySelectorAll('.scroll-in'),
+      disappearingAppearing = document.querySelectorAll('.disappear');
+// end of Initiating site contents
+
 // Intersection options
-const appearOnLoadOptions = {
+
+// options for sliding in and sliding out
+const slideInOptions = {
     threshold: [0.4, 1]
 };
 
-const dissapearOnScrollOptions = {
+const sildeOutOptions = {
     threshold: 0.3
 }
 
+// options for appearing and disappearing
+const disappearingOptions = {
+    threshold: .2
+}
+
+const appearingOptions = {
+    threshold: [.3, 1]
+}
+// end of Intersection options
+
 // Initiating Intersection Observer for sliding in
-const appearOnLoad = new IntersectionObserver(function(entries, appearOnLoad) {
+const slideInOnLoad = new IntersectionObserver(function(entries, slideInOnLoad) {
     entries.forEach(entry => {  
         if (!entry.isIntersecting) {
             return;
         } else{
-            console.log(entry);
-            entry.target.classList.add('sub-hero-scrolled')
+            entry.target.classList.add('scroll-out')
         }
-        
     });
-}, appearOnLoadOptions); 
+}, slideInOptions); 
 
 // Initiating Intersection Observer for sliding out
-const dissappearOnLoad = new IntersectionObserver(function(entries, appearOnLoad) {
+const slideOutOnLoad = new IntersectionObserver(function(entries, slideOutOnLoad) {
     entries.forEach(entry => {  
         if (entry.isIntersecting) {
             return;
         } else{
-            console.log(entry);
-            entry.target.classList.remove('sub-hero-scrolled')
+            entry.target.classList.remove('scroll-out')
         }
         
     });
-}, dissapearOnScrollOptions); 
+}, sildeOutOptions); 
 
-appearOnLoad.observe(heroScrolled)
-dissappearOnLoad.observe(heroScrolled)
+//Initiating Intersection Obsrver for diappearing
+const appearingOnScroll = new IntersectionObserver((entries, disappearingOnScroll) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+            return;
+        }else {
+            entry.target.classList.add('appear');
+        }
+    })
+}, appearingOptions);
 
+//Initiating Intersection Obsrver for diappearing
+const disappearingOnScroll = new IntersectionObserver((entries, disappearingOnScroll)=>{
+    entries.forEach(entry =>{
+        if (!entry.isIntersecting) {
+            entry.target.classList.remove('appear');
+        }else {
+            return;
+        }
+        console.log(entry);
+    })
+}, disappearingOptions)
 
+// activating intersecting effect
+ScrollInOut.forEach(element => {
+    slideInOnLoad.observe(element)
+    slideOutOnLoad.observe(element)
+})
+
+disappearingAppearing.forEach(element => {
+    appearingOnScroll.observe(element)
+    disappearingOnScroll.observe(element)
+})
