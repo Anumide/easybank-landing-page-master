@@ -147,16 +147,6 @@
     }
 }
 
-@mixin keyframes($name) {
-    @keyframes #{$name}{
-        @content;
-    }
-}
-
-@mixin animate($animation, $duration, $method) {
-    animation: $animation, $duration, $method;
-}
-
 // end of mixin
 
 *{
@@ -356,7 +346,7 @@ div.line-weight-3.open{
     // menu for mobile
 
 div.closeNav{
-   display: none;
+    display: none;
 }
 
 div.openNav{
@@ -371,17 +361,8 @@ div.openNav{
         top: 4em;
         left: 5%;
         z-index: 1;
-      @include keyframes(dropdown){
-          from{
-            // height: 5%;
-            opacity: 0.3;
-          }
-          to{
-            //   height: 50%;
-              opacity: 1;
-          }
-      };
-      @include animate(dropdown, .5s, ease-in-out);
+        overflow: hidden;
+        animation: dropdown 500ms ease-out forwards;
       ul{
         list-style-type: none;
         padding: 0;
@@ -868,4 +849,15 @@ div.second-footer-content{
 
 .appear{
     opacity: 1;
+}
+
+@keyframes dropdown{
+    from{
+        height: 5%;
+        opacity: 0.3;
+      }
+      to{
+        height: 400%;
+        opacity: 1;
+      }
 }

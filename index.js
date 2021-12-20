@@ -22,7 +22,7 @@ hamburger.addEventListener('click', () =>{
 // Intersection observer for site content
 
 //  Initiating site contents
-const ScrollInOut = document.querySelectorAll('.scroll-in'),
+const scrollInOut = document.querySelectorAll('.scroll-in'),
       disappearingAppearing = document.querySelectorAll('.disappear');
 // end of Initiating site contents
 
@@ -94,7 +94,7 @@ const disappearingOnScroll = new IntersectionObserver((entries, disappearingOnSc
 }, disappearingOptions)
 
 // activating intersecting effect
-ScrollInOut.forEach(element => {
+scrollInOut.forEach(element => {
     slideInOnLoad.observe(element)
     slideOutOnLoad.observe(element)
 })
